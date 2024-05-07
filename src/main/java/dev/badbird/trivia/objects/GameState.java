@@ -103,6 +103,7 @@ public class GameState {
                     Incorrect: %d
                     """, getPoints(), getCorrectQuestions().size(), getIncorrectQuestions().size());
         for (Difficulty value : Difficulty.values()) {
+            // count number of correct / incorrect
             System.out.println("Correct " + value.getDisplay().toLowerCase() + " questions: " + getCorrectQuestions().stream()
                     .filter(q -> q.difficulty() == value).count()
             );

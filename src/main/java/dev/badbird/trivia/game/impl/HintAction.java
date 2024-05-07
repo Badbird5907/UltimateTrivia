@@ -30,13 +30,7 @@ public class HintAction implements GameAction {
     }
 
     @Override
-    public boolean canExecute(GameState state, Scanner scanner, Question question) {
-        return state.getAvailableActions().contains(this);
-    }
-
-    @Override
     public boolean execute(GameState state, Scanner scanner, Question question, List<String> printed) {
-        String correct = question.correctAnswer();
         int i = 0;
         while (i < 2) {
             int idx = (int) (Math.random() * printed.size());

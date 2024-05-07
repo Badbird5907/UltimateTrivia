@@ -4,9 +4,7 @@ import dev.badbird.trivia.game.GameAction;
 import dev.badbird.trivia.objects.Difficulty;
 import dev.badbird.trivia.objects.GameState;
 import dev.badbird.trivia.objects.Question;
-import dev.badbird.trivia.util.Utils;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -71,13 +69,13 @@ public class GuessAction implements GameAction {
             System.out.println("Invalid guess. Please try again.");
         }
         System.out.println("Your guess: " + guess);
-        if (guess.equalsIgnoreCase(question.correctAnswer())) {
+        if (guess.equalsIgnoreCase(question.correctAnswer())) { // right
             System.out.println("Correct! +" + question.difficulty().getPoints() + " points!");
             state.getCorrectQuestions().add(question);
             state.addPoints(question.difficulty().getPoints());
             state.setWinstreak(state.getWinstreak() + 1);
             state.setTotalWinstreak(state.getTotalWinstreak() + 1);
-        } else {
+        } else { // wrong
             System.out.println("Incorrect! The correct answer is " + question.correctAnswer());
             state.getIncorrectQuestions().add(question);
             state.setLives(state.getLives() - 1);
@@ -90,7 +88,7 @@ public class GuessAction implements GameAction {
         if (state.getTotalWinstreak() > 2) {
             System.out.println("Winstreak: " + state.getTotalWinstreak());
         }
-        if (state.getWinstreak() >= state.getCurrentDifficulty().getNeededToUpgrade()) {
+        if (state.getWinstreak() >= state.getCurrentDifficulty().getNeededToUpgrade()) { // upgrade difficulty
             Difficulty next = Difficulty.getNext(state.getCurrentDifficulty());
             if (next == null) return true;
             state.setWinstreak(0);
